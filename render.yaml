@@ -6,7 +6,7 @@ services:
     dockerfilePath: Dockerfile
     repo: https://github.com/AshutoshGoswami24/text-leech-bot-for-render
     branch: main
-    autoDeploy: true
+    autoDeploy: false
     envVars:
       - key: BOT_TOKEN
         sync: false
