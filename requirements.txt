@@ -16,7 +16,6 @@ urllib3==2.0.3
 websockets==11.0.3
 beautifulsoup4==4.12.2
 cloudscraper==1.2.71
-yt-dlp==2023.7.6
 motor==3.1.1
 aiohttp==3.8.4
 aiofiles==23.1.0
@@ -31,8 +30,9 @@ Jinja2==3.0.3
 Werkzeug==2.0.2
 itsdangerous==2.0.1
 pymediainfo==6.0.1
-aria2p==0.10.4
 m3u8==3.6.0
 bs4==0.0.1
-pytube==15.0.0
 python-telegram-bot==20.3
+moviepy==2.0.0
+Pillow==10.0.0
+numpy==1.27.5
