@@ -1,27 +1,21 @@
-# Base Python image
-FROM python:3.10-slim
+# Use lightweight Python image
+FROM python:3.12-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && \
-    apt-get install -y ffmpeg jq python3-dev \
-    libmediainfo-dev zlib1g-dev aria2 && \
-    rm -rf /var/lib/apt/lists/*
-
-# Copy requirements.txt
+# Copy requirements first for caching
 COPY requirements.txt .
 
-# Upgrade pip and install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
+# Copy all app files
 COPY . .
 
-# Set environment variables
-ENV COOKIES_FILE_PATH="youtube_cookies.txt"
+# Ensure Python output is unbuffered
+ENV PYTHONUNBUFFERED=1
 
-# Run both gunicorn (for app) and main script
-CMD ["bash", "-c", "gunicorn app:app & python3 modules/main.py"]
+# Run the bot
+CMD ["python", "bot.py"]
